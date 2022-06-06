@@ -13,7 +13,7 @@ Product.init(
             primaryKey: true,
             autoIncrement: true
         },
-        // name of category
+        // name of product
         product_name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -33,20 +33,20 @@ Product.init(
                 isNumeric: true
             }
         },
-        tagIds: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'category',
-                key: 'id'
-            }
-        }
+        // tagIds: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //         model: 'category',
+        //         key: 'id'
+        //     }
+        // }
     },
     {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'category'
+        modelName: 'product'
     }
 );
 

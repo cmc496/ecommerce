@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const { Product, Category } = require('../../models');
-const { sequelize } = require('../../models/Category');
+const { Category, Product } = require('../../models');
 
 // GET /api/products
 router.get('/', (req, res) => {
@@ -10,16 +9,16 @@ router.get('/', (req, res) => {
             'product_name',
             'price',
             'stock',
-            'tagIds',
+            // 'tagIds',
         ],
         include: [
             {
                 model: Category,
                 attributes: ['id', 'category_name']
             },
-            // tag once created
+        //     // tag once created
         ]
-        
+
     })
         .then(dbProductData => res.json(dbProductData))
         .catch(err => {
@@ -34,12 +33,19 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
+        attributes: [
+            'id',
+            'product_name',
+            'price',
+            'stock',
+            // 'tagIds'
+        ],
         include: [
             {
                 model: Category,
                 attributes: ['id', 'category_name']
             },
-            // tag once created
+        //     // tag once created
         ]
     })
         .then(dbProductData => {
